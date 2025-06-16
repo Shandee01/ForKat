@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dearest, Kat</title>
+    <style>
+        /* Romantic Color Palette */
+        :root {
+            --rose: #ffcad4;
+            --blush: #f4acb7;
+            --dusty-rose: #d8a7b1;
+            --deep-rose: #c98686;
+            --dark-rose: #b76e79;
+            --ribbon: #e8b4bc;
+            --ribbon-dark: #d89ca6;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fff9fb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: 20px;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
+
+        h1 {
+            color: var(--dark-rose);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .subtitle {
+            color: var(--deep-rose);
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .scroll-container {
+            position: relative;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .scroll-paper {
+            background-color: #fff9f5;
+            padding: 0;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transform-origin: top;
+            transform: scaleY(0);
+            height: 0;
+            transition: transform 1.2s ease-out, height 1.2s ease-out;
+            border-left: 1px solid #eee;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .scroll-paper.unrolled {
+            transform: scaleY(1);
+            height: auto;
+            padding: 60px 40px 40px;
+        }
+
+        .letter-content {
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+
+        .unrolled .letter-content {
+            opacity: 1;
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .signature {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2rem;
+            color: var(--dark-rose);
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        .scroll-top {
+            background: linear-gradient(to bottom, #fff9f5, #f5e9e1);
+            height: 60px;
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Realistic Bow Ribbon */
+        .bow-ribbon {
+            position: absolute;
+            top: -15px;
+            width: 120px;
+            height: 60px;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .bow-center {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--ribbon-dark);
+            border-radius: 50%;
+            top: 15px;
+            left: 45px;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .bow-loop {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: var(--ribbon);
+            border-radius: 50%;
+            top: 5px;
+        }
+
+        .bow-loop.left {
+            left: 15px;
+            transform: rotate(-30deg);
+        }
+
+        .bow-loop.right {
+            right: 15px;
+            transform: rotate(30deg);
+        }
+
+        .bow-tails {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bow-tail {
+            width: 50px;
+            height: 20px;
+            background-color: var(--ribbon);
+            position: relative;
+            margin: 0 -5px;
+        }
+
+        .bow-tail.left {
+            transform: rotate(-10deg);
+            border-top-right-radius: 50% 100%;
+            border-bottom-right-radius: 50% 100%;
+        }
+
+        .bow-tail.right {
+            transform: rotate(10deg);
+            border-top-left-radius: 50% 100%;
+            border-bottom-left-radius: 50% 100%;
+        }
+
+        .bow-tail:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--ribbon-dark);
+            opacity: 0.3;
+            border-radius: inherit;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--deep-rose);
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .scroll-paper.unrolled {
+                padding: 50px 20px 30px;
+            }
+            .bow-ribbon {
+                width: 100px;
+                top: -10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>For the Most Beautiful, Katkat</h1>
+            <div class="subtitle">Tap the bow to open</div>
+        </header>
+
+        <div class="scroll-container">
+            <div class="scroll-top">
+                <div class="bow-ribbon" id="unrollRibbon">
+                    <div class="bow-loop left"></div>
+                    <div class="bow-center"></div>
+                    <div class="bow-loop right"></div>
+                    <div class="bow-tails">
+                        <div class="bow-tail left"></div>
+                        <div class="bow-tail right"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-paper" id="scrollPaper">
+                <div class="letter-content">
+                    <p>My Dearest,</p>
+                    
+                    <p>I've been thinking about you lately, and there are so many things i want to say right now, but words often seem to fall short when i try to express the depth of what i feel. I may not be proficient in english but i will never stop trying to find the exact words to tell you of how much you mean to me.</p>
+                    
+                    <p> First of all, I just want to say how much i appreciate you as a person. You are one of the biggest reason why i'm pushing myself to be a better person. You are my reminder to keep going, even on days when i feel like giving up. You inspire me to grow, and I’m really grateful for that
+                    </p>
+                    
+                    <p>
+                      I truly admire your strength, and your kindness. it's something rare and beautiful. I admire your heart full of love, and of course, i admire your beauty. Every time i look at you, it feels like i'm seeing you for the first time. You're effortlessly beautiful, inside and out
+                    </p>
+                    
+                    <p>
+                      And there are so many things I love about you. I love the way you smile and your pretty eyes, the way they say so much without a word. I love how you make my day better just by hearing you laugh. I love the way you think, how you handle situations, how your mind works. I even love the little things you consider flaws, because for me, those imperfections make you even more perfect.
+                    </p>
+                  
+                  <p>
+                    I want you to know that i'm right here, and i'm not going anywhere. I'm still willing to pursue and fight for my love for you. I understand if you're still not
+                    ready to respond or talk to me, no pressure. I hope you're having a nice day. I love you, Kat.
+                  </p>
+                    <p>Your skibidi</p>
+                    <div class="signature">Seann</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Monday, June 16, 2025
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ribbon = document.getElementById('unrollRibbon');
+            const scrollPaper = document.getElementById('scrollPaper');
+            let isUnrolled = false;
+
+            ribbon.addEventListener('click', function() {
+                if (isUnrolled) {
+                    scrollPaper.classList.remove('unrolled');
+                } else {
+                    scrollPaper.classList.add('unrolled');
+                }
+                isUnrolled = !isUnrolled;
+            });
+
+        });
+    </script>
+</body>
+</html>
